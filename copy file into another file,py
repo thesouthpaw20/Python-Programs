@@ -1,0 +1,36 @@
+import os
+
+def copy_file(source_file, destination_file):
+    try:
+        with open(source_file, 'r') as src, open(destination_file, 'w') as dest:
+            for line in src:
+                dest.write(line)
+        print("File copied successfully.")
+    except FileNotFoundError:
+        print(f"Error: The file {source_file} does not exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+while True:
+    print("Select operation:")
+    print("1. Copy a file")
+    print("2. Exit")
+
+    choice = input("Enter choice (1/2): ")
+
+    if choice == '1':
+        source_file = input("Enter the source file path: ").strip().strip('"')
+        destination_file = input("Enter the destination file path: ").strip().strip('"')
+        
+        # Check if the source file path is valid
+        if not os.path.isfile(source_file):
+            print(f"Error: The source file '{source_file}' does not exist.")
+        else:
+            copy_file(source_file, destination_file)
+    elif choice == '2':
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid input. Please enter a valid choice.")
+
+
